@@ -3,5 +3,6 @@
   "/login/page": "app/login/page.js",
   "/userProfile/page": "app/userProfile/page.js",
   "/adminProfile/page": "app/adminProfile/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
   "/api/auth/token/route": "app/api/auth/token/route.js"
 }
