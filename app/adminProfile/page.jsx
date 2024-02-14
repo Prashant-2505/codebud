@@ -1,4 +1,5 @@
 'use client'
+import DropDown from '@/components/DropDown';
 // Import statements
 import { useAuth } from '@/context/authContext';
 import axios from 'axios';
@@ -27,6 +28,9 @@ const AdminProfile = () => {
 
     // fetched data states
     const [allTopic, setAllTopic] = useState([]);
+
+    // selected states
+    const[selectedTopic, setSelectedTopic] = useState("")
 
 
     // Function to handle logout
@@ -65,9 +69,10 @@ const AdminProfile = () => {
     };
     // Function to add a pattern
     const addPattern = async (e) => {
+        console.log("POPOP")
         e.preventDefault();
         try {
-            const { data } = await axios.post('/api/dsa/pattern', { pattern }, {
+            const { data } = await axios.post('/api/dsa/pattern', { pattern,topic:selectedTopic }, {
                 headers: { 'Content-Type': 'application/json' }
             });
             if (data.success) {
@@ -172,21 +177,15 @@ const AdminProfile = () => {
                                 :
                                 //  add pattern form
                                 addPatternButton ?
-                                <form className='h-full bg-pink-500 flex flex-col items-center justify-center p-5'>
-                                    {allTopic && allTopic.length > 0 ?
-                                        allTopic.map((topic) => (
-                                            <p key={topic._id}>
-                                                {topic.topic}
-                                            </p>
-                                        ))
-                                        : null
-                                    }
+                                <form onSubmit={addPattern}
+                                 className='h-full bg-pink-500 flex flex-col items-center justify-center p-5'>
+                                   <DropDown heading={"Select Topic"} droptItem={allTopic} setSelectedTopic={setSelectedTopic}/>
                                     <input className={formInputStyle} type="text"
                                         value={pattern}
                                         onChange={(e) => setPattern(e.target.value)}
                                         placeholder=' Pattern' />
                                     <button
-                                        onClick={() => addPattern()}
+                                       type='submit'
                                         className={formBtnStyle}>Add </button>
                                 </form>
                                 :""

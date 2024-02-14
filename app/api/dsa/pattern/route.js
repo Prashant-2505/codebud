@@ -7,7 +7,8 @@ export async function POST(req) {
     await connectToDb();
 
     try {
-        const { pattern } = await req.json();
+        const { pattern,topic } = await req.json();
+        console.log(pattern, topic);
 
         const existingpattern = await PatternModel.findOne({ pattern }); // Use findOne instead of find
         if (existingpattern) {
@@ -17,7 +18,7 @@ export async function POST(req) {
             });
         }
 
-        const newpattern = await PatternModel.create({ pattern }); // Pass an object to create
+        const newpattern = await PatternModel.create({ pattern,topic }); // Pass an object to create
         if (newpattern) {
             return  NextResponse.json({
                 success: true, // Fix success status
