@@ -1,8 +1,7 @@
 {
+  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/api/auth/token/route": "app/api/auth/token/route.js",
-  "/userProfile/page": "app/userProfile/page.js",
-  "/login/page": "app/login/page.js",
   "/adminProfile/page": "app/adminProfile/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/api/dsa/topic/alltopic/route": "app/api/dsa/topic/alltopic/route.js",
+  "/api/auth/token/route": "app/api/auth/token/route.js"
 }
